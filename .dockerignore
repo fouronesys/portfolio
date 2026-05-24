@@ -1,0 +1,9 @@
+node_modules
+**/node_modules
+**/.git
+**/dist
+**/.env
+**/*.log
+.local
+artifacts/mockup-sandbox
+artifacts/api-server
