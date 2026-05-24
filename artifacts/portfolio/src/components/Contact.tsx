@@ -22,29 +22,29 @@ export function Contact() {
           </p>
 
           <a 
-            href="mailto:contact@1111.com.do" 
+            href="mailto:info@fourone.com.do"
             className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded font-mono font-bold text-lg hover:bg-primary/90 transition-all hover:scale-105"
           >
             <Mail className="w-5 h-5" /> EXECUTE_MAILTO
           </a>
 
           <div className="mt-20 flex justify-center items-center gap-8">
-            <a 
-              href="https://github.com/fouronesys" 
-              target="_blank" 
+            <a
+              href="https://github.com/fouronesys"
+              target="_blank"
               rel="noreferrer"
               className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors font-mono"
             >
               <Github className="w-5 h-5" /> fouronesys
             </a>
             <div className="w-1 h-1 bg-border rounded-full"></div>
-            <a 
-              href="https://www.1111.com.do" 
-              target="_blank" 
+            <a
+              href="https://fourone.com.do"
+              target="_blank"
               rel="noreferrer"
               className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors font-mono"
             >
-              <Globe className="w-5 h-5" /> 1111.com.do
+              <Globe className="w-5 h-5" /> fourone.com.do
             </a>
           </div>
         </motion.div>
