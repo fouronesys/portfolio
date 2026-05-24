@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ExternalLink, Github, FolderGit2, Smartphone } from "lucide-react";
+import { AnimatedCounter } from "./AnimatedCounter";
 
 const projects = [
   {
@@ -91,7 +92,7 @@ export function Projects() {
       <div className="container mx-auto px-6">
         <div className="max-w-3xl mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 flex items-center gap-4">
-            <span className="text-primary font-mono text-xl">02.</span> Systems Built
+            <span className="text-primary font-mono text-xl"><AnimatedCounter value={2} /></span> Systems Built
           </h2>
           <div className="h-1 w-20 bg-primary/50 rounded"></div>
         </div>

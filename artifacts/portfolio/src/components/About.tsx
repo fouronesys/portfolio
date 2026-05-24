@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Terminal, Server, ShieldCheck, Cpu } from "lucide-react";
+import { AnimatedCounter } from "./AnimatedCounter";
 
 export function About() {
   return (
@@ -7,7 +8,7 @@ export function About() {
       <div className="container mx-auto px-6">
         <div className="max-w-3xl mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 flex items-center gap-4">
-            <span className="text-primary font-mono text-xl">01.</span> Background
+            <span className="text-primary font-mono text-xl"><AnimatedCounter value={1} /></span> Background
           </h2>
           <div className="h-1 w-20 bg-primary/50 rounded"></div>
         </div>

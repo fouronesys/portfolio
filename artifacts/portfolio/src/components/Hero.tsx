@@ -1,14 +1,16 @@
 import { motion } from "framer-motion";
 import { Terminal, ArrowRight, Code2, Database, LayoutTemplate } from "lucide-react";
+import { NetworkBackground } from "./NetworkBackground";
+import { MagneticButton } from "./MagneticButton";
 
 export function Hero() {
   return (
     <section id="hero" className="min-h-screen pt-20 flex items-center relative overflow-hidden">
-      {/* Background grid pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
+      {/* Background network canvas */}
+      <NetworkBackground />
       
       {/* Glow effect */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] pointer-events-none"></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -31,18 +33,18 @@ export function Hero() {
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
-              <a
+              <MagneticButton
                 href="#projects"
-                className="bg-primary text-primary-foreground px-6 py-3 rounded font-mono font-medium hover:bg-primary/90 transition-all flex items-center gap-2 group"
+                className="bg-primary text-primary-foreground px-6 py-3 rounded font-mono font-medium hover:bg-primary/90 transition-colors flex items-center gap-2 group"
               >
                 VIEW_SYSTEMS <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
-              <a
+              </MagneticButton>
+              <MagneticButton
                 href="#contact"
                 className="bg-secondary text-foreground border border-border px-6 py-3 rounded font-mono font-medium hover:bg-secondary/80 transition-colors flex items-center gap-2"
               >
                 <Terminal className="w-4 h-4" /> INIT_CONTACT
-              </a>
+              </MagneticButton>
             </div>
 
             <div className="mt-12 grid grid-cols-3 gap-6 border-t border-border pt-8">
