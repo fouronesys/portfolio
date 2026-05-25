@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { AnimatedCounter } from "./AnimatedCounter";
+import { T } from "./T";
+import type { TKey } from "@/i18n/LanguageContext";
 import {
   SiTypescript,
   SiPython,
@@ -20,9 +22,14 @@ import {
   SiExpo,
 } from "react-icons/si";
 
-const stack = [
+type Group = {
+  categoryKey: TKey;
+  items: { name: string; icon: React.ComponentType<{ className?: string }> }[];
+};
+
+const stack: Group[] = [
   {
-    category: "Languages",
+    categoryKey: "stack.categories.languages",
     items: [
       { name: "TypeScript", icon: SiTypescript },
       { name: "Python", icon: SiPython },
@@ -32,16 +39,16 @@ const stack = [
     ],
   },
   {
-    category: "Backend & ERP",
+    categoryKey: "stack.categories.backend",
     items: [
       { name: "Node.js", icon: SiNodedotjs },
       { name: "Express", icon: SiExpress },
-      { name: "Odoo v14/v17", icon: SiPython },
       { name: "Custom ERP", icon: SiTypescript },
+      { name: "REST APIs", icon: SiNodedotjs },
     ],
   },
   {
-    category: "Mobile",
+    categoryKey: "stack.categories.mobile",
     items: [
       { name: "React Native", icon: SiReact },
       { name: "Expo", icon: SiExpo },
@@ -50,7 +57,7 @@ const stack = [
     ],
   },
   {
-    category: "Frontend",
+    categoryKey: "stack.categories.frontend",
     items: [
       { name: "React", icon: SiReact },
       { name: "HTML5", icon: SiHtml5 },
@@ -58,7 +65,7 @@ const stack = [
     ],
   },
   {
-    category: "Infrastructure",
+    categoryKey: "stack.categories.infra",
     items: [
       { name: "Docker", icon: SiDocker },
       { name: "Linux Server", icon: SiLinux },
@@ -74,7 +81,8 @@ export function Stack() {
       <div className="container mx-auto px-6">
         <div className="max-w-3xl mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 flex items-center gap-4">
-            <span className="text-primary font-mono text-xl"><AnimatedCounter value={3} /></span> Technical Stack
+            <span className="text-primary font-mono text-xl"><AnimatedCounter value={3} /></span>{" "}
+            <T k="stack.heading" />
           </h2>
           <div className="h-1 w-20 bg-primary/50 rounded"></div>
         </div>
@@ -90,7 +98,7 @@ export function Stack() {
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
               <h3 className="text-lg font-mono text-foreground mb-6 border-b border-border pb-2">
-                // {group.category}
+                // <T k={group.categoryKey} />
               </h3>
               <div className="grid grid-cols-2 gap-4">
                 {group.items.map((item, j) => (
