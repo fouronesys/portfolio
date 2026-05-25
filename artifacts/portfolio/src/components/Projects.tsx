@@ -1,86 +1,98 @@
 import { motion } from "framer-motion";
 import { ExternalLink, Github, FolderGit2, Smartphone } from "lucide-react";
 import { AnimatedCounter } from "./AnimatedCounter";
+import { T } from "./T";
+import type { TKey } from "@/i18n/LanguageContext";
 
-const projects = [
+type Project = {
+  title: string;
+  descKey: TKey;
+  tags: string[];
+  typeKey: TKey;
+  github: string | null;
+  live: string | null;
+  mobile: boolean;
+};
+
+const projects: Project[] = [
+  {
+    title: "Grúa RD",
+    descKey: "projects.items.gruard",
+    tags: ["React Native", "TypeScript", "iOS", "Android", "Live"],
+    typeKey: "projects.types.mobile",
+    github: null,
+    live: "https://play.google.com/store/apps/details?id=com.fouronesolutions.gruard",
+    mobile: true,
+  },
+  {
+    title: "Solutions Rent",
+    descKey: "projects.items.solutionsrent",
+    tags: ["React Native", "TypeScript", "iOS", "Android", "In Review"],
+    typeKey: "projects.types.mobile",
+    github: null,
+    live: "https://solutionsrentcar.do/WEB",
+    mobile: true,
+  },
   {
     title: "FourOneERP",
-    description: "Modular, multi-functional ERP system built in TypeScript from the ground up. Full enterprise resource planning: inventory, accounting, purchasing, and HR.",
+    descKey: "projects.items.fouroneerp",
     tags: ["TypeScript", "React", "Node.js", "PostgreSQL"],
-    type: "Enterprise System",
+    typeKey: "projects.types.enterprise",
     github: "https://github.com/fouronesys/fouronesysERP",
     live: null,
     mobile: false,
   },
   {
-    title: "Odoo NCF/DGII Suite",
-    description: "Production Odoo modules for Dominican fiscal compliance. Handles NCF generation, DGII tax authority integration, and electronic receipt management for Odoo v14 and v17.",
-    tags: ["Python", "Odoo v14/v17", "PostgreSQL", "API Integration"],
-    type: "Fiscal Infrastructure",
-    github: "https://github.com/fouronesys/odoo17ncf-dgii",
-    live: null,
-    mobile: false,
-  },
-  {
-    title: "Gruard",
-    description: "iOS & Android platform connecting drivers with certified tow trucks and roadside assistance across the Dominican Republic. Real-time dispatch, live tracking, and mobile-first UX.",
-    tags: ["React Native", "TypeScript", "iOS", "Android"],
-    type: "Mobile Platform",
-    github: "https://github.com/appgruard",
-    live: "https://gruard.com",
-    mobile: true,
-  },
-  {
     title: "FourOnePOS",
-    description: "Point of sale system integrated with Odoo NCF for legal fiscal receipts in the Dominican Republic. Built for high reliability in retail environments.",
-    tags: ["TypeScript", "Odoo API", "React"],
-    type: "Point of Sale",
+    descKey: "projects.items.fouronepos",
+    tags: ["TypeScript", "DGII", "React"],
+    typeKey: "projects.types.pos",
     github: "https://github.com/fouronesys/fouronepos",
     live: null,
     mobile: false,
   },
   {
     title: "KlkChat",
-    description: "Real-time chat application built in TypeScript. Full-featured messaging platform with a clean, modern interface designed for speed and reliability.",
+    descKey: "projects.items.klkchat",
     tags: ["TypeScript", "React", "WebSockets"],
-    type: "Communication App",
+    typeKey: "projects.types.comm",
     github: "https://github.com/appgruard/klkchat",
     live: null,
     mobile: false,
   },
   {
     title: "RNC/DGII Validator",
-    description: "Tools for validating Dominican business registry (RNC) numbers against DGII APIs in real-time, ensuring data accuracy for B2B transactions.",
+    descKey: "projects.items.validator",
     tags: ["Python", "HTML5", "REST API"],
-    type: "Validation Service",
+    typeKey: "projects.types.validation",
     github: "https://github.com/fouronesys/DgiiRncValidator",
     live: null,
     mobile: false,
   },
   {
     title: "Wedding Invite Flow",
-    description: "Digital wedding invitation platform with personalized RSVP flows, guest management, and elegant animated invitation experiences. Built for multiple clients.",
+    descKey: "projects.items.wedding",
     tags: ["TypeScript", "React", "Vite"],
-    type: "Digital Product",
+    typeKey: "projects.types.digital",
     github: "https://github.com/appgruard/Wedding-Invite-Flow",
     live: null,
     mobile: false,
   },
   {
     title: "ConstruLink",
-    description: "Comprehensive application designed for the construction sector to manage projects, resources, and operational timelines with precision.",
+    descKey: "projects.items.construlink",
     tags: ["TypeScript", "React", "Node.js"],
-    type: "Industry App",
+    typeKey: "projects.types.industry",
     github: "https://github.com/fouronesys/construlink",
     live: null,
     mobile: false,
   },
   {
     title: "RentaCar",
-    description: "Complete car rental management system: fleet administration, reservations, customer tracking, and billing for vehicle rental businesses.",
+    descKey: "projects.items.rentacar",
     tags: ["PHP", "MySQL", "REST API"],
-    type: "Business System",
-    github: "https://github.com/appgruard/rentacar",
+    typeKey: "projects.types.business",
+    github: null,
     live: null,
     mobile: false,
   },
@@ -92,7 +104,8 @@ export function Projects() {
       <div className="container mx-auto px-6">
         <div className="max-w-3xl mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 flex items-center gap-4">
-            <span className="text-primary font-mono text-xl"><AnimatedCounter value={2} /></span> Systems Built
+            <span className="text-primary font-mono text-xl"><AnimatedCounter value={2} /></span>{" "}
+            <T k="projects.heading" />
           </h2>
           <div className="h-1 w-20 bg-primary/50 rounded"></div>
         </div>
@@ -144,14 +157,16 @@ export function Projects() {
                 </div>
 
                 <div className="mb-4">
-                  <div className="text-xs font-mono text-primary mb-2">{project.type}</div>
+                  <div className="text-xs font-mono text-primary mb-2">
+                    <T k={project.typeKey} />
+                  </div>
                   <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
                     {project.title}
                   </h3>
                 </div>
 
                 <p className="text-sm text-muted-foreground mb-8 flex-grow leading-relaxed">
-                  {project.description}
+                  <T k={project.descKey} />
                 </p>
 
                 <div className="flex flex-wrap gap-2 mt-auto">
