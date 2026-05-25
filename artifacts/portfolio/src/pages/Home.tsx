@@ -7,24 +7,27 @@ import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { BootSequence } from "@/components/BootSequence";
 import { ScrollProgress } from "@/components/ScrollProgress";
+import { LanguageProvider } from "@/i18n/LanguageContext";
 
 export default function Home() {
   return (
-    <BootSequence>
-      <div className="min-h-screen bg-background text-foreground selection:bg-primary/30 selection:text-primary-foreground">
-        <ScrollProgress />
-        <Navigation />
-        
-        <main>
-          <Hero />
-          <About />
-          <Projects />
-          <Stack />
-          <Contact />
-        </main>
+    <LanguageProvider>
+      <BootSequence>
+        <div className="min-h-screen bg-background text-foreground selection:bg-primary/30 selection:text-primary-foreground">
+          <ScrollProgress />
+          <Navigation />
 
-        <Footer />
-      </div>
-    </BootSequence>
+          <main>
+            <Hero />
+            <About />
+            <Projects />
+            <Stack />
+            <Contact />
+          </main>
+
+          <Footer />
+        </div>
+      </BootSequence>
+    </LanguageProvider>
   );
 }
