@@ -102,6 +102,7 @@ export function BootSequence({ children }: { children: React.ReactNode }) {
         document.body.style.overflow = "";
       };
     }
+    return undefined;
   }, [hasPlayed]);
   
   const completeBoot = () => {
