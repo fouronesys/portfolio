@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLang } from "@/i18n/LanguageContext";
 
 export function BootSequence({ children }: { children: React.ReactNode }) {
+  const { t } = useLang();
   const [hasPlayed, setHasPlayed] = useState(() => {
     return sessionStorage.getItem("boot:played:v1") === "true";
   });
@@ -11,11 +13,11 @@ export function BootSequence({ children }: { children: React.ReactNode }) {
   const [isReducedMotion, setIsReducedMotion] = useState(false);
   
   const fullLines = [
-    "> BOOTING JESUS_G.SYS v4.1",
-    "> [OK] Loading kernel modules",
-    "> [OK] Mounting /erp /dgii /mobile /infra",
-    "> [OK] Establishing secure channel",
-    "> [OK] System ready"
+    t("boot.line1"),
+    t("boot.line2"),
+    t("boot.line3"),
+    t("boot.line4"),
+    t("boot.line5"),
   ];
   
   useEffect(() => {
@@ -155,7 +157,7 @@ export function BootSequence({ children }: { children: React.ReactNode }) {
             
             <div className="absolute bottom-8 right-8 text-xs text-muted-foreground flex items-center gap-2 z-40">
               <button onClick={completeBoot} className="hover:text-primary transition-colors focus:outline-none cursor-pointer">
-                SKIP [esc]
+                {t("boot.skip")}
               </button>
             </div>
             
