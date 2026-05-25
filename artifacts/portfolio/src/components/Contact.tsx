@@ -1,8 +1,11 @@
 import { motion } from "framer-motion";
 import { Mail, Github, Globe, Terminal } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
+import { T } from "./T";
+import { useLang } from "@/i18n/LanguageContext";
 
 export function Contact() {
+  const { t } = useLang();
   return (
     <section id="contact" className="py-32 relative">
       <div className="container mx-auto px-6 max-w-4xl text-center">
@@ -15,19 +18,21 @@ export function Contact() {
           <div className="inline-flex items-center justify-center p-4 rounded-full bg-primary/10 mb-8">
             <Terminal className="w-8 h-8 text-primary" />
           </div>
-          
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">Initialize Connection</h2>
-          
+
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <T k="contact.heading" />
+          </h2>
+
           <p className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
-            Whether you need a full ERP implementation, a complex DGII fiscal integration, or custom systems architecture, my inbox is open. Let's build infrastructure that scales.
+            <T k="contact.body" />
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <a 
+            <a
               href="mailto:info@fourone.com.do"
               className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded font-mono font-bold text-lg hover:bg-primary/90 transition-all hover:scale-105"
             >
-              <Mail className="w-5 h-5" /> EXECUTE_MAILTO
+              <Mail className="w-5 h-5" /> {t("contact.mailto")}
             </a>
             <a
               href="https://wa.me/18293519324"
@@ -35,7 +40,7 @@ export function Contact() {
               rel="noreferrer"
               className="inline-flex items-center gap-2 border border-primary/40 text-primary px-8 py-4 rounded font-mono font-bold text-lg hover:bg-primary/10 transition-all hover:scale-105"
             >
-              <SiWhatsapp className="w-5 h-5" /> OPEN_WHATSAPP
+              <SiWhatsapp className="w-5 h-5" /> {t("contact.whatsapp")}
             </a>
           </div>
 
