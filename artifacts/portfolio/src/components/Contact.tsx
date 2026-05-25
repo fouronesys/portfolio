@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Mail, Github, Globe, Terminal } from "lucide-react";
+import { SiWhatsapp } from "react-icons/si";
 
 export function Contact() {
   return (
@@ -21,14 +22,24 @@ export function Contact() {
             Whether you need a full ERP implementation, a complex DGII fiscal integration, or custom systems architecture, my inbox is open. Let's build infrastructure that scales.
           </p>
 
-          <a 
-            href="mailto:info@fourone.com.do"
-            className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded font-mono font-bold text-lg hover:bg-primary/90 transition-all hover:scale-105"
-          >
-            <Mail className="w-5 h-5" /> EXECUTE_MAILTO
-          </a>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a 
+              href="mailto:info@fourone.com.do"
+              className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded font-mono font-bold text-lg hover:bg-primary/90 transition-all hover:scale-105"
+            >
+              <Mail className="w-5 h-5" /> EXECUTE_MAILTO
+            </a>
+            <a
+              href="https://wa.me/18293519324"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 border border-primary/40 text-primary px-8 py-4 rounded font-mono font-bold text-lg hover:bg-primary/10 transition-all hover:scale-105"
+            >
+              <SiWhatsapp className="w-5 h-5" /> OPEN_WHATSAPP
+            </a>
+          </div>
 
-          <div className="mt-20 flex justify-center items-center gap-8">
+          <div className="mt-20 flex flex-wrap justify-center items-center gap-x-8 gap-y-4">
             <a
               href="https://github.com/fouronesys"
               target="_blank"
@@ -37,7 +48,16 @@ export function Contact() {
             >
               <Github className="w-5 h-5" /> fouronesys
             </a>
-            <div className="w-1 h-1 bg-border rounded-full"></div>
+            <div className="w-1 h-1 bg-border rounded-full hidden sm:block"></div>
+            <a
+              href="https://wa.me/18293519324"
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors font-mono"
+            >
+              <SiWhatsapp className="w-5 h-5" /> +1 829 351 9324
+            </a>
+            <div className="w-1 h-1 bg-border rounded-full hidden sm:block"></div>
             <a
               href="https://fourone.com.do"
               target="_blank"
