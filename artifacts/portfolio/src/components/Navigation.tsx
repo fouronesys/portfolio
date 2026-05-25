@@ -1,18 +1,22 @@
 import { useState, useEffect } from "react";
-import { Link } from "wouter";
 import { Menu, X, Terminal, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { useLang } from "@/i18n/LanguageContext";
+import type { TKey } from "@/i18n/LanguageContext";
+import { T } from "./T";
+import { LanguageToggle } from "./LanguageToggle";
 
-const navItems = [
-  { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
-  { label: "Stack", href: "#stack" },
-  { label: "Contact", href: "#contact" },
+const navItems: { key: TKey; href: string }[] = [
+  { key: "nav.about", href: "#about" },
+  { key: "nav.projects", href: "#projects" },
+  { key: "nav.stack", href: "#stack" },
+  { key: "nav.contact", href: "#contact" },
 ];
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { lang } = useLang();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -42,33 +46,39 @@ export function Navigation() {
         <nav className="hidden md:flex items-center gap-8">
           {navItems.map((item) => (
             <a
-              key={item.label}
+              key={item.key}
               href={item.href}
               className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
             >
-              {item.label}
+              <T k={item.key} />
             </a>
           ))}
+          <LanguageToggle />
           <a
             href="#contact"
             className="text-sm font-mono bg-primary text-primary-foreground px-4 py-2 rounded font-medium hover:bg-primary/90 transition-colors flex items-center gap-1"
           >
-            INITIATE_CONTACT <ChevronRight className="w-4 h-4" />
+            <T k="nav.cta" /> <ChevronRight className="w-4 h-4" />
           </a>
         </nav>
 
         {/* Mobile Nav Toggle */}
-        <button
-          className="md:hidden text-foreground p-2"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X /> : <Menu />}
-        </button>
+        <div className="md:hidden flex items-center gap-3">
+          <LanguageToggle />
+          <button
+            className="text-foreground p-2"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? <X /> : <Menu />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Nav Menu */}
       {isMobileMenuOpen && (
         <motion.nav
+          key={lang}
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
@@ -76,12 +86,12 @@ export function Navigation() {
         >
           {navItems.map((item) => (
             <a
-              key={item.label}
+              key={item.key}
               href={item.href}
               className="text-sm font-medium text-muted-foreground hover:text-foreground p-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              {item.label}
+              <T k={item.key} />
             </a>
           ))}
         </motion.nav>
